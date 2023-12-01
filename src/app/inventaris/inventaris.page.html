@@ -1,0 +1,64 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-button slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-button>
+    <ion-title>inventaris</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card *ngFor="let item of datainventaris">
+    <ion-item>
+      <ion-label>
+        {{item.nama_barang}}
+        <p>{{item.jumlah_barang}}</p>
+          <p>{{item.status}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">inventaris</ion-title>
+    </ion-toolbar>
+  </ion-header>
+</ion-content>
+
+<ion-card>
+  <ion-button (click)="open_modal_tambah(true)" expand="block">Tambah inventaris</ion-button>
+</ion-card>
+<ion-modal [isOpen]="modal_tambah">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button (click)="cancel()">batal</ion-button>
+      </ion-buttons>
+      <ion-title>Tambah inventaris</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding">
+      <ion-item>
+        <ion-input label="Inventaris" labelPlacement="floating" required [(ngModel)]="nama_barang" placeholder="Nama barang" type="text"></ion-input>
+      </ion-item>
+
+      <ion-content class="ion-padding">
+        <ion-item>
+          <ion-input label="Inventaris" labelPlacement="floating" required [(ngModel)]="jumlah_barang" placeholder="Jumlah Barang yang ada" type="text"></ion-input>
+        </ion-item>
+
+        <ion-content class="ion-padding">
+          <ion-item>
+            <ion-input label="Inventaris" labelPlacement="floating" required [(ngModel)]="status" placeholder="Status Barang" type="text"></ion-input>
+          </ion-item>  
+    </ion-content>
+
+    <ion-row>
+      <ion-col>
+        <ion-button type="button" (click)="tambahinventaris()" color="green" shape="full" expand="block">Tambah Inventaris</ion-button>
+        <ion-button type="button" (click)="hapusinventaris(item.id_inventaris)" color="red" shape="full" expand="block">Hapus Inventaris</ion-button>
+      </ion-col>
+    </ion-row>
+  </ng-template>
+</ion-modal>
